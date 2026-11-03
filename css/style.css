@@ -1,0 +1,740 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* =========================================================
+   1. CẤU HÌNH CHUNG & FONT CHỮ
+   ========================================================= */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: radial-gradient(circle at center, #5e0f13 0%, #240406 100%);
+  overflow-x: hidden;
+}
+
+.font-serif-title {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+/* Font chữ viết tay mềm mại thanh thoát giống mẫu Thu & Huy */
+.font-euro-script {
+  font-family: 'Alex Brush', 'Great Vibes', cursive;
+}
+
+.font-roman {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+}
+
+/* =========================================================
+   2. BỀ MẶT GIẤY NHUNG ĐỎ RƯỢU VANG & CON DẤU SÁP LÌ (MATTE)
+   ========================================================= */
+.velvet-cardstock {
+  background-color: #4b0a0d;
+  background-image:
+    radial-gradient(ellipse at 50% 28%, rgba(108, 18, 23, 0.55) 0%, rgba(44, 5, 7, 0.92) 100%),
+    radial-gradient(circle at 20% 80%, rgba(85, 12, 16, 0.3) 0%, transparent 60%);
+}
+
+/* Con dấu sáp bề mặt lì tự nhiên (Matte Wax Seal - Không bóng nhựa) */
+.wax-seal-matte {
+  border-radius: 50%;
+  filter: drop-shadow(0 14px 20px rgba(10, 1, 2, 0.78)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.55));
+  transition: transform 0.35s ease, filter 0.35s ease;
+  animation: subtleSealBreathe 3.6s ease-in-out infinite;
+}
+
+.wax-seal-wrapper:hover .wax-seal-matte {
+  transform: scale(1.04);
+}
+
+@keyframes subtleSealBreathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+/* Con dấu sáp màu kem ngà (Ivory Cameo Wax Seal) có gờ sáp tự nhiên */
+.wax-seal-oval {
+  border-radius: 49% 51% 50% 50% / 51% 49% 51% 49%;
+  background: radial-gradient(ellipse at 32% 28%, #fcf9f2 0%, #efe5d4 52%, #d5c3a8 88%, #bfa98b 100%);
+  box-shadow:
+    0 14px 26px rgba(12, 1, 2, 0.78),
+    0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 4px 7px rgba(255, 255, 255, 0.95),
+    inset 0 -6px 10px rgba(138, 112, 80, 0.65);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  animation: pulseSeal 3.2s ease-in-out infinite;
+}
+
+.wax-seal-wrapper:hover .wax-seal-oval {
+  transform: scale(1.05);
+}
+
+@keyframes pulseSeal {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* =========================================================
+   3. HIỆU ỨNG LẬT MỞ NẮP PHONG BÌ 180 ĐỘ NHƯ ẢNH MẪU
+   ========================================================= */
+.envelope-3d-stage {
+  perspective: 1400px;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Khi mở nắp, phong bì hơi dịch nhẹ xuống để nhường chỗ cho nắp lật lên đỉnh */
+.envelope-opening .envelope-3d-stage {
+  transform: translateY(58px);
+}
+
+/* Nắp phong bì chữ V xoay quanh bản lề cạnh trên cùng (top center) */
+.env-top-flap-3d {
+  transform-origin: top center;
+  transition: transform 0.95s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.35s;
+}
+
+.wax-seal-wrapper {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Thiệp mời nằm lồng bên trong túi phong bì */
+.pocket-letter-card {
+  transform: translateY(0) scale(0.98);
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.55s, box-shadow 0.95s ease 0.55s;
+}
+
+/* Bước 1: Con dấu sáp mờ đi */
+.envelope-opening #wax-seal-btn {
+  transform: translate(-50%, -40%) scale(1.15);
+  opacity: 0;
+}
+
+/* Bước 2: Nắp phong bì viền ren lật ngược 180 độ lên trên (Biến thành hình trên trong ảnh mẫu) */
+.envelope-opening #envelope-flap-wrapper {
+  transform: rotateX(180deg);
+  z-index: 15; /* Nằm ra phía sau tấm thiệp khi tấm thiệp trượt lên */
+}
+
+/* Bước 3: Tấm thiệp trắng bên trong trượt vút lên khỏi túi phong bì */
+.envelope-opening #european-inner-card {
+  transform: translateY(-135px) scale(1.02);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.75);
+}
+
+/* Bước 4: Chuyển mượt vào giao diện thiệp cưới chính */
+.envelope-opened {
+  opacity: 0;
+  transform: scale(1.06);
+  pointer-events: none;
+}
+
+.wax-seal-wrapper {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.euro-inner-letter {
+  opacity: 0;
+  transform: translateY(45px) scale(0.95);
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, opacity 0.65s ease 0.15s;
+}
+
+.envelope-opening #wax-seal-btn {
+  transform: translate(-50%, 18px) scale(1.12);
+  opacity: 0;
+}
+
+.envelope-opening #envelope-flap-wrapper {
+  transform: perspective(1200px) rotateX(165deg) translateY(-40px);
+  opacity: 0;
+}
+
+.envelope-opening #european-inner-card {
+  opacity: 1;
+  transform: translateY(-10px) scale(1);
+}
+
+.envelope-opened {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* =========================================================
+   4. KHĂN TAY VIỀN REN TRẮNG "LỊCH TRÌNH" (ĐÃ NÂNG CẤP REN THÊU)
+   ========================================================= */
+.film-holes-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 3px;
+  width: 6px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.75) 0px,
+    rgba(255, 255, 255, 0.75) 5px,
+    transparent 5px,
+    transparent 12px
+  );
+}
+
+.silver-tray-corner {
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d8dce0 45%, #8f969c 75%, #eef1f5 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(255, 255, 255, 0.9);
+  border: 3px solid #cfd4d8;
+}
+
+.napkin-diamond {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, box-shadow 0.55s ease;
+}
+
+.napkin-card:hover .napkin-diamond {
+  transform: rotate(35deg) scale(1.04);
+}
+
+.napkin-unfolding .napkin-diamond {
+  transform: rotate(0deg) scale(2.35) !important;
+  opacity: 0;
+}
+
+.napkin-unfolding .napkin-text {
+  transform: scale(1.18);
+  opacity: 0;
+}
+
+/* Viền ren trắng thêu hoa lỗ thoáng tinh xảo cho khăn tay */
+.napkin-lace-bottom {
+  position: absolute;
+  left: -2px;
+  right: -38px;
+  bottom: -38px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='40' viewBox='0 0 56 40'%3E%3Cpath d='M0,0 L56,0 L56,12 C50,30 39,38 28,38 C17,38 6,30 0,12 Z' fill='%23faf7f0' stroke='%23dfd8c8' stroke-width='1'/%3E%3Cpath d='M0,14 C6,32 17,39 28,39 C39,39 50,32 56,14' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-dasharray='2,2'/%3E%3Ccircle cx='28' cy='17' r='6' fill='none' stroke='%23d8d0be' stroke-width='1.2'/%3E%3Ccircle cx='28' cy='17' r='2' fill='%235a0d11' fill-opacity='0.75'/%3E%3Cellipse cx='15' cy='14' rx='2.5' ry='4' transform='rotate(-25 15 14)' fill='%235a0d11' fill-opacity='0.75'/%3E%3Cellipse cx='41' cy='14' rx='2.5' ry='4' transform='rotate(25 41 14)' fill='%235a0d11' fill-opacity='0.75'/%3E%3Cellipse cx='20' cy='27' rx='2.2' ry='3.5' transform='rotate(-15 20 27)' fill='%235a0d11' fill-opacity='0.8'/%3E%3Cellipse cx='28' cy='30' rx='2.2' ry='3.5' fill='%235a0d11' fill-opacity='0.8'/%3E%3Cellipse cx='36' cy='27' rx='2.2' ry='3.5' transform='rotate(15 36 27)' fill='%235a0d11' fill-opacity='0.8'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+}
+
+.napkin-lace-right {
+  position: absolute;
+  top: -2px;
+  bottom: -38px;
+  right: -38px;
+  width: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='56' viewBox='0 0 40 56'%3E%3Cpath d='M0,0 L0,56 L12,56 C30,50 38,39 38,28 C38,17 30,6 12,0 Z' fill='%23faf7f0' stroke='%23dfd8c8' stroke-width='1'/%3E%3Cpath d='M14,0 C32,6 39,17 39,28 C39,39 32,50 14,56' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-dasharray='2,2'/%3E%3Ccircle cx='17' cy='28' r='6' fill='none' stroke='%23d8d0be' stroke-width='1.2'/%3E%3Ccircle cx='17' cy='28' r='2' fill='%235a0d11' fill-opacity='0.75'/%3E%3Cellipse cx='14' cy='15' rx='4' ry='2.5' transform='rotate(-25 14 15)' fill='%235a0d11' fill-opacity='0.75'/%3E%3Cellipse cx='14' cy='41' rx='4' ry='2.5' transform='rotate(25 14 41)' fill='%235a0d11' fill-opacity='0.75'/%3E%3Cellipse cx='27' cy='20' rx='3.5' ry='2.2' transform='rotate(-15 27 20)' fill='%235a0d11' fill-opacity='0.8'/%3E%3Cellipse cx='30' cy='28' rx='3.5' ry='2.2' fill='%235a0d11' fill-opacity='0.8'/%3E%3Cellipse cx='27' cy='36' rx='3.5' ry='2.2' transform='rotate(15 27 36)' fill='%235a0d11' fill-opacity='0.8'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
+  filter: drop-shadow(6px 0 8px rgba(0, 0, 0, 0.4));
+}
+
+/* =========================================================
+   5. HIỆU ỨNG TRONG TRANG CHI TIẾT LOCATION & TIMELINE
+   ========================================================= */
+.timeline-modal-backdrop {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.timeline-modal-backdrop.is-open {
+  opacity: 1;
+}
+
+.timeline-modal-box {
+  transform: translateY(35px) scale(0.96);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-modal-backdrop.is-open .timeline-modal-box {
+  transform: translateY(0) scale(1);
+}
+
+.tl-anim-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-modal-backdrop.is-open .tl-anim-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tl-delay-1 { transition-delay: 0.10s; }
+.tl-delay-2 { transition-delay: 0.22s; }
+.tl-delay-3 { transition-delay: 0.34s; }
+.tl-delay-4 { transition-delay: 0.46s; }
+.tl-delay-5 { transition-delay: 0.58s; }
+.tl-delay-6 { transition-delay: 1.25s; }
+
+.table-line-art path,
+.table-line-art line,
+.table-line-art ellipse,
+.table-line-art circle {
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  transition: stroke-dashoffset 1.8s ease-out 0.35s;
+}
+
+.timeline-modal-backdrop.is-open .table-line-art path,
+.timeline-modal-backdrop.is-open .table-line-art line,
+.timeline-modal-backdrop.is-open .table-line-art ellipse,
+.timeline-modal-backdrop.is-open .table-line-art circle {
+  stroke-dashoffset: 0;
+}
+
+.candle-flame {
+  transform-origin: center bottom;
+  animation: candleFlicker 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes candleFlicker {
+  0% { transform: scale(1) rotate(-3deg); opacity: 0.85; }
+  50% { transform: scale(1.15, 1.08) rotate(3deg); opacity: 1; }
+  100% { transform: scale(0.95, 1.12) rotate(-2deg); opacity: 0.9; }
+}
+
+/* Viền ren Oval Doily có họa tiết mắt lưới đan chéo chân thực */
+.timeline-lace-oval::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background-image:
+    radial-gradient(circle, transparent 62%, #4d0a0d 63%, #4d0a0d 66%, transparent 67%),
+    repeating-conic-gradient(
+      from 0deg,
+      #f5efe4 0deg 4deg,
+      transparent 4deg 8deg
+    ),
+    repeating-conic-gradient(
+      from 2deg,
+      #e2d6c3 0deg 3deg,
+      transparent 3deg 9deg
+    );
+  -webkit-mask: radial-gradient(closest-side, transparent 82%, black 83%, black 97%, transparent 99%);
+  mask: radial-gradient(closest-side, transparent 82%, black 83%, black 97%, transparent 99%);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
+}
+
+.timeline-lace-oval::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 4px dotted #f7f0e4;
+  box-shadow: 0 0 0 2px #e5d8c3;
+  pointer-events: none;
+}
+
+.tl-vertical-axis {
+  height: 0;
+  transition: height 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.68s;
+}
+
+.timeline-modal-backdrop.is-open .tl-vertical-axis {
+  height: calc(100% - 6rem);
+}
+
+.tl-milestone {
+  opacity: 0;
+  transform: scale(0.88) translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.timeline-modal-backdrop.is-open .tl-milestone {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.tl-m-1 { transition-delay: 0.78s; }
+.tl-m-2 { transition-delay: 0.98s; }
+.tl-m-3 { transition-delay: 1.18s; }
+
+.tl-dot {
+  box-shadow: 0 0 0 0 rgba(110, 13, 18, 0.5);
+  animation: dotPulse 2.2s infinite;
+}
+
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(110, 13, 18, 0.45); }
+  70% { box-shadow: 0 0 0 7px rgba(110, 13, 18, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(110, 13, 18, 0); }
+}
+
+.tl-icon-float {
+  animation: gentleFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* =========================================================
+   6. HIỆU ỨNG CUỘN TRANG, HOA RƠI & THANH CUỘN TRANG CHÍNH
+   ========================================================= */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -10%;
+  background: radial-gradient(circle, #ffe5ec 0%, #b81428 100%);
+  border-radius: 150% 0 150% 0;
+  opacity: 0.6;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0vh) rotate(0deg) translateX(0);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(20px);
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(-20px);
+  }
+}
+
+.wish-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.wish-scroll::-webkit-scrollbar-track {
+  background: #f7f2ea;
+  border-radius: 6px;
+}
+
+.wish-scroll::-webkit-scrollbar-thumb {
+  background: #d5c3aa;
+  border-radius: 6px;
+}
+/* =========================================================
+   7. HIỆU ỨNG MỞ HỘP QUÀ 3D & HIỆU ỨNG BÊN TRONG TRANG QR
+   ========================================================= */
+
+/* Vầng sáng vàng ấm tỏa ra phía sau hộp quà đỏ */
+.gift-glow-aura {
+  background: radial-gradient(circle, rgba(253, 224, 71, 0.38) 0%, rgba(244, 172, 196, 0.22) 50%, transparent 75%);
+  animation: pulseAura 2.8s ease-in-out infinite;
+}
+
+@keyframes pulseAura {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Chùm tia sáng vàng xoay tròn khi hộp quà bật nắp */
+.gift-light-rays {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(253, 224, 71, 0.38) 0deg 12deg,
+    transparent 12deg 24deg
+  );
+  -webkit-mask: radial-gradient(circle, black 10%, transparent 70%);
+  mask: radial-gradient(circle, black 10%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.3) rotate(0deg);
+  transition: opacity 0.4s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gift-box-opening .gift-light-rays {
+  opacity: 1;
+  transform: scale(1.25) rotate(65deg);
+}
+
+/* Chuyển động nổi bồng bềnh của hộp quà khi chờ */
+.gift-svg-main {
+  animation: idleGiftBounce 3.2s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.gift-box-stage:hover .gift-svg-main {
+  animation: hoverGiftShake 0.65s ease-in-out infinite;
+}
+
+@keyframes idleGiftBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-9px) scale(1.02); }
+}
+
+@keyframes hoverGiftShake {
+  0%, 100% { transform: rotate(0deg) scale(1.05); }
+  25% { transform: rotate(-5deg) scale(1.07); }
+  75% { transform: rotate(5deg) scale(1.07); }
+}
+
+/* GIAI ĐOẠN 1 KHI CLICK: Hộp quà rung mạnh nạp lực */
+.gift-box-charging .gift-svg-main {
+  animation: chargeShakeBox 0.08s linear infinite !important;
+}
+
+@keyframes chargeShakeBox {
+  0% { transform: translate(-3px, 2px) rotate(-4deg) scale(0.95); }
+  50% { transform: translate(3px, -2px) rotate(4deg) scale(0.95); }
+  100% { transform: translate(-2px, -1px) rotate(-2deg) scale(0.95); }
+}
+
+/* GIAI ĐOẠN 2 KHI CLICK: Nắp hộp bật tung + lóe sáng + bắn pháo tim */
+.gift-inner-light {
+  opacity: 0;
+  transform: scale(0.4);
+  transform-origin: 110px 96px;
+  transition: opacity 0.35s ease, transform 0.5s ease;
+}
+
+.gift-lid-group {
+  transform-origin: 110px 76px;
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s ease;
+}
+
+.gift-base-group {
+  transform-origin: 110px 160px;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gift-box-opening .gift-svg-main {
+  animation: none;
+}
+
+.gift-box-opening .gift-base-group {
+  transform: scale(1.08, 0.92);
+}
+
+.gift-box-opening .gift-lid-group {
+  transform: translateY(-75px) rotate(-22deg) scale(1.15);
+  opacity: 0;
+}
+
+.gift-box-opening .gift-inner-light {
+  opacity: 1;
+  transform: scale(1.7);
+}
+
+/* Hạt trái tim & kim tuyến bắn ra từ hộp quà */
+.burst-item {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  font-size: 18px;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease;
+}
+
+.burst-item:nth-child(odd) { color: #e63946; }
+.burst-item:nth-child(even) { color: #f59e0b; font-size: 20px; }
+
+.gift-box-opening .b-1 { transform: translate(-80px, -90px) scale(1.25) rotate(-20deg); opacity: 1; }
+.gift-box-opening .b-2 { transform: translate(-40px, -120px) scale(1.35) rotate(15deg); opacity: 1; }
+.gift-box-opening .b-3 { transform: translate(30px, -125px) scale(1.2) rotate(-10deg); opacity: 1; }
+.gift-box-opening .b-4 { transform: translate(85px, -85px) scale(1.3) rotate(25deg); opacity: 1; }
+.gift-box-opening .b-5 { transform: translate(-95px, -30px) scale(1.1) rotate(-30deg); opacity: 1; }
+.gift-box-opening .b-6 { transform: translate(95px, -35px) scale(1.2) rotate(30deg); opacity: 1; }
+.gift-box-opening .b-7 { transform: translate(0px, -135px) scale(1.4) rotate(0deg); opacity: 1; }
+.gift-box-opening .b-8 { transform: translate(-60px, -60px) scale(1.2) rotate(20deg); opacity: 1; }
+
+.gratitude-banner {
+  background-color: #45070b;
+  background-image:
+    radial-gradient(ellipse at 25% 30%, rgba(158, 27, 34, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 75%, rgba(130, 18, 25, 0.45) 0%, transparent 50%),
+    linear-gradient(135deg, #380508 0%, #5e0c11 50%, #2e0406 100%);
+}
+
+/* =========================================================
+   HIỆU ỨNG BÊN TRONG MODAL WEDDING - QUÀ CƯỚI NỀN ĐỎ
+   ========================================================= */
+.gift-modal-backdrop {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.gift-modal-backdrop.is-open {
+  opacity: 1;
+}
+
+.gift-modal-box {
+  transform: scale(0.88) translateY(35px);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gift-modal-backdrop.is-open .gift-modal-box {
+  transform: scale(1) translateY(0);
+}
+
+/* Tiêu đề Wedding rơi nhẹ kèm nhịp thở ánh sáng */
+.gift-anim-title,
+.gift-anim-footer {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease 0.12s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+}
+
+.gift-modal-backdrop.is-open .gift-anim-title,
+.gift-modal-backdrop.is-open .gift-anim-footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hai thẻ Cô dâu & Chú rể trượt đối xứng có độ nảy lò xo (Spring) */
+.gift-card-left {
+  opacity: 0;
+  transform: translateX(-65px) scale(0.94);
+  transition: opacity 0.65s ease 0.22s, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.22s;
+}
+
+.gift-card-right {
+  opacity: 0;
+  transform: translateX(65px) scale(0.94);
+  transition: opacity 0.65s ease 0.38s, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.38s;
+}
+
+.gift-modal-backdrop.is-open .gift-card-left,
+.gift-modal-backdrop.is-open .gift-card-right {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Vệt sáng ánh kim chạy lướt qua khung Cô dâu & Chú rể */
+.gift-card-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 240, 245, 0.22),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: cardShimmerSweep 4.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.gift-card-shimmer-delayed::after {
+  animation-delay: 2.1s;
+}
+
+@keyframes cardShimmerSweep {
+  0% { left: -120%; }
+  45%, 100% { left: 160%; }
+}
+
+/* Vòng sáng nhịp đập quanh ảnh tròn Cô dâu & Chú rể */
+.avatar-pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(244, 198, 208, 0.65);
+  animation: avatarRingPulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes avatarRingPulse {
+  0% { transform: scale(0.98); opacity: 0.9; }
+  75% { transform: scale(1.1); opacity: 0; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+
+/* Tia quét sáng chạy dọc trên ô [QR code] */
+.qr-scan-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(to bottom, transparent, rgba(235, 173, 192, 0.45), transparent);
+  animation: qrBeamScan 2.6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes qrBeamScan {
+  0% { top: 4px; }
+  100% { top: calc(100% - 22px); }
+}
+
+/* Hạt đom đóm vàng & trái tim bay lơ lửng trong nền đỏ của Modal */
+.inside-sparkle-particle {
+  position: absolute;
+  bottom: -20px;
+  pointer-events: none;
+  animation: floatUpSparkle linear infinite;
+}
+
+@keyframes floatUpSparkle {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(-820px) translateX(25px) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Thông báo nổi khi bấm Copy STK */
+.copy-toast-popup {
+  opacity: 0;
+  transform: translate(-50%, -18px) scale(0.9);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.copy-toast-popup.show {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* Hai cành hoa hai bên đung đưa nhẹ */
+.floral-branch-left {
+  transform-origin: bottom left;
+  animation: swayBranchLeft 4.5s ease-in-out infinite;
+}
+
+.floral-branch-right {
+  transform-origin: bottom right;
+  animation: swayBranchRight 4.8s ease-in-out infinite;
+}
+
+@keyframes swayBranchLeft {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(3.5deg); }
+}
+
+@keyframes swayBranchRight {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-3.5deg); }
+}
