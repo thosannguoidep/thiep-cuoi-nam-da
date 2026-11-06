@@ -154,11 +154,11 @@ button {
 }
 
 /* =========================================================
-   3. HIỆU ỨNG LẬT MỞ NẮP PHONG BÌ 180 ĐỘ & TĂNG TỐC CHUYỂN CẢNH
+   3. HIỆU ỨNG LẬT MỞ NẮP PHONG BÌ 180 ĐỘ (NHỊP ĐỘ VỪA PHẢI, MƯỢT MÀ)
    ========================================================= */
 .envelope-3d-stage {
   perspective: 1400px;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .envelope-opening .envelope-3d-stage {
@@ -167,40 +167,47 @@ button {
 
 .env-top-flap-3d {
   transform-origin: top center;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.2s;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.32s;
 }
 
 .wax-seal-wrapper {
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
 .pocket-letter-card {
   transform: translateY(0) scale(0.98);
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, box-shadow 0.65s ease 0.2s;
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, box-shadow 0.95s ease 0.35s;
 }
 
 .euro-inner-letter {
   opacity: 0;
   transform: translateY(45px) scale(0.95);
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.1s, opacity 0.45s ease 0.1s;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s, opacity 0.6s ease 0.25s;
 }
 
 #luxury-envelope {
   perspective: 1400px;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 
 #envelope-overlay.envelope-opening #luxury-envelope {
   transform: translateY(16%);
 }
 
-/* 1. Nắp phong bì lật nhanh trong 0.45s */
+/* Làm mờ nhẹ tiêu đề trên đỉnh khi thiệp trắng trượt lên để không bị đè chữ */
+#envelope-overlay.envelope-opening .velvet-cardstock > div:first-of-type {
+  opacity: 0.15;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease 0.25s, transform 0.5s ease 0.25s;
+}
+
+/* 1. Nắp phong bì lật từ tốn trong 0.75s */
 #envelope-flap-wrapper {
   transform-origin: top center;
   transform-style: preserve-3d;
   transition:
-    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    z-index 0s linear 0.2s;
+    transform 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    z-index 0s linear 0.32s;
 }
 
 .envelope-opening #envelope-flap-wrapper,
@@ -209,9 +216,9 @@ button {
   z-index: 12 !important;
 }
 
-/* Con dấu sáp mờ dần nhanh khi nắp lật */
+/* Con dấu sáp mờ dần */
 #wax-seal-btn {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .envelope-opening #wax-seal-btn,
@@ -220,12 +227,12 @@ button {
   opacity: 0;
 }
 
-/* 2. Tấm thiệp bên trong trượt lên ngay ở 0.2s và hoàn tất trong 0.65s */
+/* 2. Tấm thiệp bên trong trượt lên êm ái trong 0.95s (bắt đầu sau khi nắp mở 0.35s) */
 #european-inner-card.pocket-letter-card {
   transform: translateY(0) scale(0.98);
   transition:
-    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-    box-shadow 0.65s ease 0.2s;
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+    box-shadow 0.95s ease 0.35s;
 }
 
 .envelope-opening #european-inner-card,
@@ -235,14 +242,14 @@ button {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
 }
 
-/* 3. Làm mờ màn hình phong bì mượt mà ngay sau khi thiệp nhô lên */
+/* 3. Chuyển cảnh mờ dần vào thiệp chính trong 0.65s */
 .envelope-opened,
 #envelope-overlay.envelope-opened {
   opacity: 0;
   transform: scale(1.04);
   pointer-events: none;
   visibility: hidden;
-  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+  transition: opacity 0.65s ease, transform 0.65s ease, visibility 0.65s ease;
 }
 
 /* =========================================================

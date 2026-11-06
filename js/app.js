@@ -85,7 +85,7 @@ function initEnvelopeOpen() {
     // Giảm từ 2600 xuống 1150 để thiệp vừa trượt lên là chuyển cảnh ngay không bị khựng
     setTimeout(() => {
       overlay.classList.add('envelope-opened');
-    }, 1150);
+    }, 1900);
   };
 
   if (openBtn) openBtn.addEventListener('click', triggerOpenAnimation);
