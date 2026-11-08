@@ -276,68 +276,78 @@
       </div>
     </section>
 
-    <!-- SECTION E: ALBUM HÌNH CƯỚI -->
-    <section class="py-10 px-6 bg-[#f7f2ea] reveal-item">
+<!-- SECTION E: ALBUM HÌNH CƯỚI -->
+    <section class="py-10 px-3 sm:px-6 bg-[#f7f2ea] reveal-item">
       <div class="text-center mb-6">
-        <h3 class="font-script text-4xl text-[#9e2a2b]">Album Hình Cưới</h3>
-        <p class="text-xs text-gray-500 mt-1">Khoảnh khắc hạnh phúc của Lưu Văn Nam &amp; Nguyễn Thị Linh Đa</p>
+        <h3 class="font-script text-[34px] sm:text-4xl text-[#9e2a2b] whitespace-nowrap">Album Hình Cưới</h3>
+        <p style="font-size: 14.5px !important;" class="text-gray-500 mt-1 whitespace-nowrap">
+          Khoảnh khắc hạnh phúc của Lưu Nam &amp; Linh Đa
+        </p>
       </div>
 
-      <div class="grid grid-cols-2 gap-3">
-        <img src="./img/anhcuoi6.jpg"
-             class="rounded-xl w-full h-56 object-cover shadow-sm hover:scale-[1.02] transition" alt="Album 1" />
-        <img src="./img/anhcuoi7.jpg"
-             class="rounded-xl w-full h-56 object-cover shadow-sm hover:scale-[1.02] transition" alt="Album 2" />
-        <img src="./img/anhcuoi8.jpg"
-             class="col-span-2 rounded-xl w-full h-60 object-cover shadow-sm hover:scale-[1.02] transition" alt="Album 3" />
-        <img src="./img/anhcuoi9.jpg"
-             class="rounded-xl w-full h-48 object-cover shadow-sm hover:scale-[1.02] transition" alt="Album 4" />
-        <img src="./img/anhcuoi10.jpg"
-             class="rounded-xl w-full h-48 object-cover shadow-sm hover:scale-[1.02] transition" alt="Album 5" />
-      </div>
-    </section>
-
-    <!-- SECTION F: FORM XÁC NHẬN THAM DỰ & SỔ LƯU BÚT (LƯU MONGODB) -->
-    <section id="rsvp-section" class="py-12 px-6 reveal-item">
+ <!-- SECTION F: FORM XÁC NHẬN THAM DỰ -->
+    <section id="rsvp-section" class="py-12 px-3 sm:px-6 reveal-item">
       <div class="text-center mb-6">
-        <h3 class="font-script text-4xl text-[#9e2a2b]">Xác Nhận Tham Dự</h3>
-        <p class="text-xs text-gray-500 mt-1">Hãy gửi lời chúc tới Lưu Văn Nam &amp; Nguyễn Thị Linh Đa nhé</p>
+        <h3 class="font-script text-[32px] sm:text-[38px] text-[#9e2a2b] whitespace-nowrap">
+          Xác Nhận Tham Dự
+        </h3>
+        <p class="text-[13.5px] sm:text-[15px] text-gray-500 mt-1 whitespace-nowrap">
+          Hãy gửi lời chúc tới Văn Nam &amp; Linh Đa nhé
+        </p>
       </div>
 
-      <form id="rsvpForm" class="bg-white p-6 rounded-2xl border border-[#e6dac8] shadow-sm space-y-4 mb-8">
+      <form id="rsvpForm" class="bg-white p-4 sm:p-6 rounded-2xl border border-[#e6dac8] shadow-sm space-y-4 mb-8">
         <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-600 mb-1">Tên của bạn *</label>
+          <label class="block text-[13px] sm:text-[14px] font-semibold uppercase tracking-normal text-gray-600 mb-1 whitespace-nowrap">
+            Tên của bạn *
+          </label>
           <input type="text" id="guestName" required placeholder="Nhập tên của bạn..."
-                 class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#9e2a2b]" />
+                 style="font-size: 15px !important;"
+                 class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#9e2a2b]" />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
           <div>
-            <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-600 mb-1">Số điện thoại</label>
+            <label class="block text-[12.5px] sm:text-[14px] font-semibold uppercase tracking-normal text-gray-600 mb-1 whitespace-nowrap">
+              Số điện thoại
+            </label>
             <input type="tel" id="phone" placeholder="Tùy chọn"
-                   class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#9e2a2b]" />
+                   style="font-size: 14.5px !important;"
+                   class="w-full px-2.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#9e2a2b]" />
           </div>
           <div>
-            <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-600 mb-1">Khách của bên</label>
-            <select id="side" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#9e2a2b]">
+            <label class="block text-[12.5px] sm:text-[14px] font-semibold uppercase tracking-normal text-gray-600 mb-1 whitespace-nowrap">
+              Khách của bên
+            </label>
+            <select id="side"
+                    style="font-size: 14.5px !important;"
+                    class="w-full px-2 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-[#9e2a2b]">
               <option value="Nha Trai">Nhà Trai</option>
               <option value="Nha Gai">Nhà Gái</option>
             </select>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
           <div>
-            <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-600 mb-1">Tham dự</label>
-            <select id="attendance" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#9e2a2b]">
+            <label class="block text-[12.5px] sm:text-[14px] font-semibold uppercase tracking-normal text-gray-600 mb-1 whitespace-nowrap">
+              Tham dự
+            </label>
+            <select id="attendance"
+                    style="font-size: 14.5px !important;"
+                    class="w-full px-2 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-[#9e2a2b]">
               <option value="Co">Sẽ tham dự</option>
-              <option value="Co the">Có thể tham dự</option>
-              <option value="Khong">Tiếc quá mình bận</option>
+              <option value="Co the">Có thể dự</option>
+              <option value="Khong">Mình bận mất rồi</option>
             </select>
           </div>
           <div>
-            <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-600 mb-1">Số người đi</label>
-            <select id="guestsCount" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#9e2a2b]">
+            <label class="block text-[12.5px] sm:text-[14px] font-semibold uppercase tracking-normal text-gray-600 mb-1 whitespace-nowrap">
+              Số người đi
+            </label>
+            <select id="guestsCount"
+                    style="font-size: 14.5px !important;"
+                    class="w-full px-2 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-[#9e2a2b]">
               <option value="1">1 người</option>
               <option value="2">2 người</option>
               <option value="3">3 người</option>
@@ -347,19 +357,21 @@
         </div>
 
         <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-600 mb-1">Lời chúc gửi tới dâu rể *</label>
+          <label class="block text-[13px] sm:text-[14px] font-semibold uppercase tracking-normal text-gray-600 mb-1 whitespace-nowrap">
+            Lời chúc gửi tới dâu rể *
+          </label>
           <textarea id="wishMessage" rows="3" required placeholder="Gửi lời chúc tốt đẹp nhất tới Văn Nam & Linh Đa..."
-                    class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#9e2a2b]"></textarea>
+                    style="font-size: 15px !important;"
+                    class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#9e2a2b]"></textarea>
         </div>
 
         <button type="submit" id="submitBtn"
-                class="w-full bg-[#9e2a2b] hover:bg-[#7c1f20] text-white font-medium py-3 rounded-xl text-sm shadow transition">
+                style="font-size: 16px !important;"
+                class="w-full bg-[#9e2a2b] hover:bg-[#7c1f20] text-white font-medium py-3 rounded-xl shadow transition whitespace-nowrap">
           Gửi Xác Nhận &amp; Lời Chúc
         </button>
         <p id="formStatus" class="text-xs text-center hidden"></p>
       </form>
-    </section>
-
 <!-- SECTION F2: HỘP QUÀ CƯỚI MẪU MỚI & CHÂN TRANG WITH GRATITUDE -->
     <section class="pt-10 pb-6 bg-[#56090b] text-[#fceee2] text-center relative overflow-hidden reveal-item">
 
