@@ -45,8 +45,12 @@ function initGuestNameFromURL() {
 }
 
 // =========================================================================
-// 3. HIỆU ỨNG GÕ CHỮ "OPEN THE INVITATION" & LẬT MỞ PHONG BÌ 3D
+// 3. HIỆU ỨNG MỞ PHONG BÌ 3D & TỰ ĐỘNG LƯỚT TRANG XUỐNG THẬT CHẬM
 // =========================================================================
+let autoScrollRafId = null;
+let isAutoScrollPaused = false;
+let resumeScrollTimer = null;
+
 function initEnvelopeOpen() {
   const openBtn = document.getElementById('openCardBtn');
   const envelopeBox = document.getElementById('luxury-envelope');
@@ -82,14 +86,77 @@ function initEnvelopeOpen() {
     overlay.classList.add('envelope-opening');
     if (typeEl) typeEl.textContent = 'WELCOME TO OUR WEDDING';
 
-    // Giảm từ 2600 xuống 1150 để thiệp vừa trượt lên là chuyển cảnh ngay không bị khựng
     setTimeout(() => {
       overlay.classList.add('envelope-opened');
+
+      // Bắt đầu từ từ lướt trang bên trong xuống dưới sau khi phong bì mờ đi (600ms)
+      setTimeout(() => {
+        startSlowAutoScroll();
+      }, 600);
     }, 1900);
   };
 
   if (openBtn) openBtn.addEventListener('click', triggerOpenAnimation);
   if (envelopeBox) envelopeBox.addEventListener('click', triggerOpenAnimation);
+}
+
+function startSlowAutoScroll() {
+  if (autoScrollRafId) return;
+
+  // TỐC ĐỘ LƯỚT: 0.45 là rất chậm và mượt (muốn chậm hơn nữa giảm xuống 0.3, nhanh hơn tăng lên 0.7)
+  const SCROLL_SPEED = 0.45;
+  let pixelAccumulator = 0;
+
+  const pauseTemporarily = () => {
+    isAutoScrollPaused = true;
+    clearTimeout(resumeScrollTimer);
+    // Tự động lướt tiếp sau khi khách ngừng chạm/vuốt tay 3.5 giây
+    resumeScrollTimer = setTimeout(() => {
+      const activeTag = document.activeElement ? document.activeElement.tagName : '';
+      if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(activeTag)) {
+        isAutoScrollPaused = false;
+      }
+    }, 3500);
+  };
+
+  // Tạm dừng ngay khi khách tự cuộn chuột hoặc chạm tay lên màn hình
+  window.addEventListener('wheel', pauseTemporarily, { passive: true });
+  window.addEventListener('touchstart', pauseTemporarily, { passive: true });
+  window.addEventListener('touchmove', pauseTemporarily, { passive: true });
+  window.addEventListener('keydown', pauseTemporarily, { passive: true });
+
+  // Dừng hẳn khi khách đang bấm vào ô nhập Tên / Lời chúc
+  document.querySelectorAll('input, textarea, select').forEach(el => {
+    el.addEventListener('focus', () => {
+      isAutoScrollPaused = true;
+      clearTimeout(resumeScrollTimer);
+    });
+    el.addEventListener('blur', pauseTemporarily);
+  });
+
+  const step = () => {
+    const giftModal = document.getElementById('giftModal');
+    const timelineModal = document.getElementById('timelineModal');
+    const isModalOpen =
+      (giftModal && !giftModal.classList.contains('hidden')) ||
+      (timelineModal && !timelineModal.classList.contains('hidden'));
+
+    if (!isAutoScrollPaused && !isModalOpen) {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (window.scrollY < maxScroll - 2) {
+        pixelAccumulator += SCROLL_SPEED;
+        if (pixelAccumulator >= 1) {
+          const movePx = Math.floor(pixelAccumulator);
+          window.scrollBy(0, movePx);
+          pixelAccumulator -= movePx;
+        }
+      }
+    }
+
+    autoScrollRafId = requestAnimationFrame(step);
+  };
+
+  autoScrollRafId = requestAnimationFrame(step);
 }
 // =========================================================================
 // 4. ĐIỀU KHIỂN NHẠC NỀN & ĐỒNG HỒ ĐẾM NGƯỢC
